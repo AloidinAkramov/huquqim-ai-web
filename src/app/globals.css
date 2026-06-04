@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 /*
-  Huquqim.AI dizayn tizimi — premium / ishonchli.
-  Ohang: chuqur ko'k (ishonch, huquq), toza oq fon, professional.
+  Huquqim.AI dizayn tizimi — rasmiy, ishonchli (Lex.uz uslubi).
+  Ohang: davlat ko'ki (#0064A9), toza oq fon, professional.
 */
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #f7f9fb;
+  --foreground: #15233b;
 
-  /* Brand — chuqur ko'k */
-  --brand-50: #eef4ff;
-  --brand-100: #d9e6ff;
-  --brand-200: #bcd2ff;
-  --brand-300: #8eb4ff;
-  --brand-400: #598bff;
-  --brand-500: #3563e9;
-  --brand-600: #1e44d6;
-  --brand-700: #1936ad;
-  --brand-800: #1a318c;
-  --brand-900: #1b2e72;
+  /* Brand — Lex.uz davlat ko'ki (#0064A9 asos) */
+  --brand-50: #eef6fc;
+  --brand-100: #d4e8f7;
+  --brand-200: #aed3ef;
+  --brand-300: #79b6e3;
+  --brand-400: #3d92d4;
+  --brand-500: #1574bd;
+  --brand-600: #0064a9;
+  --brand-700: #0c57a6;
+  --brand-800: #0a4682;
+  --brand-900: #0c3a68;
 
-  /* Yordamchi */
+  /* Yordamchi — neytral kulrang */
   --surface: #ffffff;
-  --border: #e2e8f0;
-  --muted: #64748b;
-  --muted-fg: #475569;
+  --border: #dfe5ec;
+  --muted: #647187;
+  --muted-fg: #4a5567;
   --success: #15803d;
   --warning: #b45309;
   --danger: #dc2626;
@@ -74,16 +74,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Nozik fon naqshi (landing hero uchun) */
+/* Juda nozik fon naqshi (landing hero uchun) */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
+    linear-gradient(to right, rgba(24, 24, 27, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(24, 24, 27, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
 }
 
 .bg-radial-brand {
-  background: radial-gradient(60% 60% at 50% 0%, rgba(53, 99, 233, 0.12) 0%, transparent 100%);
+  background: radial-gradient(55% 50% at 50% 0%, rgba(0, 100, 169, 0.07) 0%, transparent 100%);
 }
 
 @keyframes fade-up {
