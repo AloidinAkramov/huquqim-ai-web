@@ -11,7 +11,6 @@ Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel&logoColor=white)](https://vercel.com/)
 
 [Backend repo](https://github.com/AloidinAkramov/huquqim-ai-backend) · [🌐 Jonli demo](https://frontend-mu-lilac-so8jhtnqsj.vercel.app)
 
@@ -46,7 +45,6 @@ Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
 - ✅ **Advokat tavsiyasi** — jiddiy ishda Telegram tugmasi
 - ✅ **Hujjat yuklab olish** — shablon to'ldirib `.docx` (Word) olish
 - ✅ **Premium / paywall** — bepul daraja cheklovi, upgrade oqimi
-- ✅ **Mock rejim** — backendsiz ham demo ishlaydi
 
 ---
 
@@ -62,61 +60,9 @@ Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
 
 ---
 
-## 🚀 Ishga tushirish
-
-```bash
-# 1. Klonlash
-git clone https://github.com/AloidinAkramov/huquqim-ai-web.git
-cd huquqim-ai-web
-
-# 2. Paketlar
-npm install
-
-# 3. Sozlama (ixtiyoriy — bo'sh bo'lsa mock demo ishlaydi)
-cp .env.example .env.local
-# .env.local:  NEXT_PUBLIC_API_URL=https://your-backend-url
-
-# 4. Dev server
-npm run dev
-# http://localhost:3000
-```
-
-### Muhit o'zgaruvchisi
-
-| O'zgaruvchi | Tavsif |
-|-------------|--------|
-| `NEXT_PUBLIC_API_URL` | Backend manzili. Bo'sh bo'lsa — **mock demo** rejim ishlaydi |
-
----
-
 ## 🎨 Dizayn
 
 Lex.uz (O'zbekiston qonunchilik portali) uslubida — **rasmiy davlat ko'ki** (`#0064A9`), toza oq fon, professional tipografiya. Fuqaro uchun tanish va ishonchli.
-
----
-
-## 📁 Loyiha tuzilishi
-
-```
-src/
-├── app/
-│   ├── page.tsx              # Landing
-│   ├── (auth)/               # Register, Login
-│   └── dashboard/            # Ishlar, chat, hujjatlar
-├── components/
-│   ├── ui/                   # Button, Card, Input, Badge...
-│   ├── triage-panel.tsx      # Toifa foizlari + Telegram
-│   └── upgrade-modal.tsx     # Premium paywall
-└── lib/
-    ├── api.ts                # API client + mock layer
-    └── types.ts              # Backend bilan mos tiplar
-```
-
----
-
-## 📜 Litsenziya
-
-MIT — erkin foydalanish mumkin.
 
 ---
 
