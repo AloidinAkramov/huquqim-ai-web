@@ -14,7 +14,9 @@
 
 <br/>
 
-### [![Jonli demo](https://img.shields.io/badge/🌐_JONLI_DEMO-huquqim--ai.vercel.app-0F4FB3?style=for-the-badge)](https://huquqim-ai.vercel.app) &nbsp; [![Backend repo](https://img.shields.io/badge/⚙️_BACKEND_REPO-huquqim--ai--backend-14213D?style=for-the-badge&logo=github)](https://github.com/AloidinAkramov/huquqim-ai-backend)
+### [![Jonli demo](https://img.shields.io/badge/🌐_JONLI_DEMO-huquqim--ai.vercel.app-0F4FB3?style=for-the-badge)](https://huquqim-ai.vercel.app)
+
+### [![Backend repo](https://img.shields.io/badge/⚙️_BACKEND_REPO-huquqim--ai--backend-14213D?style=for-the-badge&logo=github)](https://github.com/AloidinAkramov/huquqim-ai-backend)
 
 </div>
 
