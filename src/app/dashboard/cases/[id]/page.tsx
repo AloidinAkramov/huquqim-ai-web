@@ -6,7 +6,7 @@ import { TriagePanel } from "@/components/triage-panel";
 import { UpgradeModal } from "@/components/upgrade-modal";
 import { Button } from "@/components/ui/button";
 import { casesApi, chatApi, isPaymentRequired } from "@/lib/api";
-import { Case, Message, MessageRole, TriageResult } from "@/lib/types";
+import { Case, CaseStatus, Message, MessageRole, TriageResult } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, BookOpen, FileText, Scale, Send, Sparkles } from "lucide-react";
 import Link from "next/link";
@@ -101,6 +101,10 @@ export default function CaseChatPage() {
     try {
       const res = await chatApi.sendMessage(caseId, trimmed);
       setMessages((m) => [...m, res.reply]);
+      // AI javob berdi — ish endi "Aniqlanmoqda" emas, "Tushuntirildi".
+      setTheCase((c) =>
+        c && c.status === CaseStatus.Triage ? { ...c, status: CaseStatus.Explained } : c
+      );
     } catch (err) {
       if (isPaymentRequired(err)) {
         // Limitga yetildi — yuborilgan xabarni qaytarib, paywall ochamiz.
@@ -144,8 +148,11 @@ export default function CaseChatPage() {
     <div className="flex h-[calc(100vh-0px)] flex-col md:h-screen">
       {/* Header */}
       <div className="border-b border-border bg-surface/80 px-4 py-3 backdrop-blur sm:px-6">
-        <div className="mx-auto flex max-w-3xl items-center gap-3">
-          <Link href="/dashboard" className="text-muted hover:text-foreground">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/dashboard"
+            className="shrink-0 text-muted transition-all hover:-translate-x-0.5 hover:text-brand-600"
+          >
             <ArrowLeft className="size-5" />
           </Link>
           <div className="min-w-0 flex-1">
@@ -203,9 +210,12 @@ export default function CaseChatPage() {
               </Button>
             </div>
           )}
-          <p className="mt-2 text-center text-[11px] text-muted">
+          <Link
+            href="/disclaimer"
+            className="mt-2 block text-center text-[11px] text-muted transition-colors hover:text-amber-700 hover:underline"
+          >
             Bu umumiy ma&apos;lumot. Murakkab holatda malakali yuristga murojaat qiling.
-          </p>
+          </Link>
         </div>
       </div>
 
@@ -269,7 +279,7 @@ function MessageBubble({ message }: { message: Message }) {
             {message.sources.map((s) => (
               <span
                 key={s}
-                className="rounded-md bg-zinc-100 px-2 py-0.5 text-[11px] font-medium text-zinc-600"
+                className="rounded-md bg-navy-100 px-2 py-0.5 text-[11px] font-medium text-navy-600"
               >
                 {s}
               </span>

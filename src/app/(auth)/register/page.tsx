@@ -12,6 +12,7 @@ import { useState } from "react";
 export default function RegisterPage() {
   const router = useRouter();
   const [form, setForm] = useState({ fullName: "", email: "", password: "", phoneNumber: "" });
+  const [accepted, setAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +21,10 @@ export default function RegisterPage() {
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!accepted) {
+      setError("Davom etish uchun ommaviy ofertaga rozilik bildiring.");
+      return;
+    }
     setError(null);
     setLoading(true);
     try {
@@ -84,6 +89,35 @@ export default function RegisterPage() {
           required
         />
 
+        {/* Ommaviy ofertaga rozilik — majburiy */}
+        <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-background/60 p-3.5 transition-colors hover:border-brand-300">
+          <input
+            type="checkbox"
+            checked={accepted}
+            onChange={(e) => setAccepted(e.target.checked)}
+            className="mt-0.5 size-4 shrink-0 cursor-pointer accent-brand-600"
+          />
+          <span className="text-xs leading-relaxed text-muted-foreground">
+            Men{" "}
+            <Link
+              href="/oferta"
+              target="_blank"
+              className="font-medium text-brand-600 hover:underline"
+            >
+              ommaviy oferta shartnomasi
+            </Link>{" "}
+            va{" "}
+            <Link
+              href="/disclaimer"
+              target="_blank"
+              className="font-medium text-brand-600 hover:underline"
+            >
+              mas&apos;uliyat cheklovi
+            </Link>{" "}
+            bilan tanishdim hamda ularning shartlariga to&apos;liq rozilik bildiraman.
+          </span>
+        </label>
+
         {error && (
           <div className="flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm text-danger">
             <AlertCircle className="size-4 shrink-0" />
@@ -91,7 +125,7 @@ export default function RegisterPage() {
           </div>
         )}
 
-        <Button type="submit" className="w-full" loading={loading}>
+        <Button type="submit" className="w-full" loading={loading} disabled={!accepted}>
           Ro&apos;yxatdan o&apos;tish
         </Button>
       </form>

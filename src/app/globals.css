@@ -1,33 +1,46 @@
 @import "tailwindcss";
 
 /*
-  Huquqim.AI dizayn tizimi — rasmiy, ishonchli (Lex.uz uslubi).
-  Ohang: davlat ko'ki (#0064A9), toza oq fon, professional.
+  Huquqim.AI — rasmiy davlat platformasi dizayn tizimi.
+  Primary #0F4FB3 (ko'k) + Navy #14213D + Background #F7F9FC + White.
+  Ruh: parlament / davlat portali darajasidagi jiddiy, ishonchli AI huquqiy platforma.
 */
 
 :root {
-  --background: #f7f9fb;
-  --foreground: #15233b;
+  --background: #f7f9fc;
+  --foreground: #14213d;
 
-  /* Brand — Lex.uz davlat ko'ki (#0064A9 asos) */
-  --brand-50: #eef6fc;
-  --brand-100: #d4e8f7;
-  --brand-200: #aed3ef;
-  --brand-300: #79b6e3;
-  --brand-400: #3d92d4;
-  --brand-500: #1574bd;
-  --brand-600: #0064a9;
-  --brand-700: #0c57a6;
-  --brand-800: #0a4682;
-  --brand-900: #0c3a68;
+  /* Brand — rasmiy davlat ko'ki (#0F4FB3 asos, hover #0C469F) */
+  --brand-50: #eef3fb;
+  --brand-100: #d8e3f6;
+  --brand-200: #b4caee;
+  --brand-300: #84a8e1;
+  --brand-400: #4f80d1;
+  --brand-500: #2563c4;
+  --brand-600: #0f4fb3;
+  --brand-700: #0c469f;
+  --brand-800: #0e3c81;
+  --brand-900: #102f5f;
 
-  /* Yordamchi — neytral kulrang */
+  /* Deep Navy — sarlavhalar, to'q elementlar */
+  --navy-50: #f1f3f8;
+  --navy-100: #e0e5ee;
+  --navy-200: #c3ccdd;
+  --navy-300: #98a6c1;
+  --navy-400: #6b7c9f;
+  --navy-500: #475467;
+  --navy-600: #36435a;
+  --navy-700: #283449;
+  --navy-800: #1b2740;
+  --navy-900: #14213d;
+
+  /* Yordamchi — neytral */
   --surface: #ffffff;
-  --border: #dfe5ec;
-  --muted: #647187;
-  --muted-fg: #4a5567;
+  --border: #e5eaf1;
+  --muted: #667085;
+  --muted-fg: #475467;
   --success: #15803d;
-  --warning: #b45309;
+  --warning: #eab54a;
   --danger: #dc2626;
 }
 
@@ -50,13 +63,25 @@
   --color-brand-800: var(--brand-800);
   --color-brand-900: var(--brand-900);
 
+  --color-navy-50: var(--navy-50);
+  --color-navy-100: var(--navy-100);
+  --color-navy-200: var(--navy-200);
+  --color-navy-300: var(--navy-300);
+  --color-navy-400: var(--navy-400);
+  --color-navy-500: var(--navy-500);
+  --color-navy-600: var(--navy-600);
+  --color-navy-700: var(--navy-700);
+  --color-navy-800: var(--navy-800);
+  --color-navy-900: var(--navy-900);
+
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
 
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), var(--font-sans), ui-sans-serif, sans-serif;
 
-  --radius-card: 1rem;
+  --radius-card: 1.125rem;
 }
 
 * {
@@ -74,6 +99,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Sarlavhalar — Manrope display font, biroz zich harf oralig'i (SaaS uslubi) */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.018em;
+}
+
 /* Juda nozik fon naqshi (landing hero uchun) */
 .bg-grid {
   background-image:
@@ -83,7 +114,18 @@ body {
 }
 
 .bg-radial-brand {
-  background: radial-gradient(55% 50% at 50% 0%, rgba(0, 100, 169, 0.07) 0%, transparent 100%);
+  background: radial-gradient(55% 50% at 50% 0%, rgba(15, 79, 179, 0.07) 0%, transparent 100%);
+}
+
+/* Premium soft shadow'lar (rasmiy davlat platformasi uslubi) */
+.shadow-card {
+  box-shadow: 0 1px 2px rgba(20, 33, 61, 0.04), 0 1px 3px rgba(20, 33, 61, 0.03);
+}
+.shadow-card-hover {
+  box-shadow: 0 6px 16px -4px rgba(20, 33, 61, 0.08), 0 2px 6px -2px rgba(20, 33, 61, 0.05);
+}
+.shadow-float {
+  box-shadow: 0 10px 30px -6px rgba(15, 79, 179, 0.2), 0 4px 10px -4px rgba(20, 33, 61, 0.1);
 }
 
 @keyframes fade-up {
@@ -93,6 +135,34 @@ body {
 
 .animate-fade-up {
   animation: fade-up 0.5s ease-out both;
+}
+
+/*
+  Scroll reveal — element ko'rinishga kirganda pastdan tepaga (opacity 0→1, translateY 20px→0).
+  JS IntersectionObserver `.is-visible` qo'shadi. Stagger uchun inline transition-delay beriladi.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Floating AI button — scroll'dan keyin paydo bo'lishi */
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-float-in {
+  animation: float-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Chat xabar paydo bo'lishi */
@@ -116,3 +186,94 @@ body {
 }
 .typing-dot:nth-child(2) { animation-delay: 0.2s; }
 .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* ============================================================
+   PREMIUM HERO (MySud.uz uslubi — davlat LegalTech platformasi)
+   ============================================================ */
+
+/* Hero fon rasm — sekin nafas oluvchi zoom (scale 1 → 1.06), juda nozik */
+@keyframes hero-bg-breathe {
+  0%, 100% { transform: scale(1.02); }
+  50% { transform: scale(1.08); }
+}
+.hero-bg-img {
+  animation: hero-bg-breathe 22s ease-in-out infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-img { animation: none; }
+}
+
+/* Deep blue glass overlay — MySud.uz yorqin ko'ki, matn o'qilishi uchun */
+.hero-overlay {
+  background:
+    linear-gradient(180deg, rgba(15, 59, 134, 0.62) 0%, rgba(18, 76, 168, 0.5) 50%, rgba(13, 49, 110, 0.78) 100%),
+    radial-gradient(70% 60% at 50% 35%, rgba(37, 99, 196, 0.3) 0%, transparent 72%);
+  backdrop-filter: blur(1.5px);
+}
+
+/*
+  iOS 26 glossy — yuqori yorug'lik reflektsiyasi + shisha sirt hissi.
+  Faqat hero ichidagi tugma/badge'ga `.glossy` qo'shiladi.
+*/
+.glossy {
+  position: relative;
+  overflow: hidden;
+}
+.glossy::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 42%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Primary CTA — deep blue gradient + subtle gloss + soft shadow (MySud uslubi) */
+.cta-primary {
+  background: linear-gradient(180deg, #1a5cc4 0%, #0f4fb3 100%);
+  box-shadow: 0 6px 16px -4px rgba(15, 79, 179, 0.35), 0 2px 4px rgba(15, 79, 179, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease;
+}
+.cta-primary:hover {
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: 0 12px 28px -6px rgba(15, 79, 179, 0.42), 0 4px 8px rgba(15, 79, 179, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/*
+  Elegant huquqqa mos orqa fon chiziqlari (Click uslubi).
+  Oq section'lar uchun — fon oq qoladi, juda nozik egri chiziqlar qo'shiladi.
+*/
+.legal-lines {
+  position: relative;
+}
+.legal-lines::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(120% 90% at 100% 0%, rgba(15, 79, 179, 0.05) 0%, transparent 45%),
+    radial-gradient(100% 80% at 0% 100%, rgba(15, 79, 179, 0.04) 0%, transparent 45%),
+    repeating-linear-gradient(115deg, rgba(15, 79, 179, 0.022) 0px, rgba(15, 79, 179, 0.022) 1px, transparent 1px, transparent 80px);
+  z-index: 0;
+}
+.legal-lines > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero stagger — ketma-ket pastdan tepaga (opacity 0→1, translateY 20px→0) */
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-in {
+  opacity: 0;
+  animation: hero-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in { animation: none; opacity: 1; }
+}

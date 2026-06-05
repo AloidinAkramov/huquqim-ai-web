@@ -1,3 +1,4 @@
+import { LegalLinesBg } from "@/components/legal-lines-bg";
 import { Logo } from "@/components/logo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -19,6 +20,7 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 const features = [
@@ -62,7 +64,7 @@ const plans = [
   },
   {
     name: "Bir martalik",
-    price: "50 000",
+    price: "99 000",
     period: "so'm",
     icon: FileSignature,
     features: ["1 to'liq ish", "Tushuntirish + hujjat", "Yo'riqnoma"],
@@ -71,7 +73,7 @@ const plans = [
   },
   {
     name: "Obuna / oy",
-    price: "99 000",
+    price: "199 000",
     period: "so'm",
     icon: Star,
     features: ["Cheksiz ishlar", "Barcha hujjatlar", "Saqlash + eslatmalar"],
@@ -94,56 +96,70 @@ export default function Home() {
     <>
       <SiteHeader />
 
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-grid">
-        <div className="pointer-events-none absolute inset-0 bg-radial-brand" />
-        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pt-24">
+      {/* HERO — premium ko'k fon rasm + glass overlay (MySud uslubi) */}
+      <section className="relative overflow-hidden bg-[#0f3b86]">
+        {/* Fon rasm — tarozi, ko'k gradient */}
+        <Image
+          src="/hero-bg.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hero-bg-img select-none object-cover"
+        />
+        {/* Deep blue glass overlay — matn o'qilishi uchun */}
+        <div className="hero-overlay pointer-events-none absolute inset-0" />
+        <div className="relative mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-center px-4 pb-28 pt-28 sm:px-6 sm:pb-36 sm:pt-36">
           <div className="mx-auto max-w-3xl text-center">
-            <Badge tone="brand" className="animate-fade-up">
+            <span className="glossy hero-in inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-medium text-white shadow-card backdrop-blur">
               <Sparkles className="size-3.5" /> Sun&apos;iy intellekt yordamchisi
-            </Badge>
+            </span>
             <h1
-              className="animate-fade-up mt-5 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-6xl"
-              style={{ animationDelay: "60ms" }}
+              className="hero-in mt-5 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-6xl"
+              style={{ animationDelay: "100ms" }}
             >
               Advokatingiz yo&apos;qmi? <br className="hidden sm:block" />
-              <span className="text-brand-600">Huquqim.AI</span> yordam beradi.
+              <span className="text-sky-300">Huquqim.AI</span> yordam beradi.
             </h1>
             <p
-              className="animate-fade-up mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground"
-              style={{ animationDelay: "120ms" }}
+              className="hero-in mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-blue-100/85"
+              style={{ animationDelay: "200ms" }}
             >
               Kichik sud ishlarida — iste&apos;molchi, mehnat, ma&apos;muriy nizolarda —
               holatingizni tushunamiz, hujjat tayyorlaymiz va sudga tayyorlaymiz. Oddiy tilda,
               o&apos;zbek tilida.
             </p>
             <div
-              className="animate-fade-up mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
-              style={{ animationDelay: "180ms" }}
+              className="hero-in mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              style={{ animationDelay: "300ms" }}
             >
               <Link href="/register">
-                <Button size="lg" className="w-full sm:w-auto">
+                <Button size="lg" className="cta-primary glossy w-full sm:w-auto">
                   Bepul boshlash <ArrowRight className="size-4" />
                 </Button>
               </Link>
               <Link href="/login">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="glossy w-full border-white/25 bg-white/10 text-white backdrop-blur hover:border-white/40 hover:bg-white/20 sm:w-auto"
+                >
                   Hisobga kirish
                 </Button>
               </Link>
             </div>
             <div
-              className="animate-fade-up mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground"
-              style={{ animationDelay: "240ms" }}
+              className="hero-in mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-blue-100/80"
+              style={{ animationDelay: "400ms" }}
             >
               <span className="inline-flex items-center gap-1.5">
-                <ShieldCheck className="size-4 text-success" /> Ma&apos;lumotlar shifrlangan
+                <ShieldCheck className="size-4 text-sky-300" /> Ma&apos;lumotlar shifrlangan
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <CheckCircle2 className="size-4 text-success" /> Manba: Lex.uz qonunlari
+                <CheckCircle2 className="size-4 text-sky-300" /> Manba: Lex.uz qonunlari
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <CheckCircle2 className="size-4 text-success" /> Ro&apos;yxatdan o&apos;tish bepul
+                <CheckCircle2 className="size-4 text-sky-300" /> Ro&apos;yxatdan o&apos;tish bepul
               </span>
             </div>
           </div>
@@ -151,7 +167,9 @@ export default function Home() {
       </section>
 
       {/* QANDAY ISHLAYDI */}
-      <section id="qanday" className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section id="qanday" className="relative overflow-hidden">
+        <LegalLinesBg />
+        <div className="relative mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <SectionHeading
           eyebrow="Qanday ishlaydi"
           title="Uch oddiy qadam"
@@ -168,11 +186,13 @@ export default function Home() {
             </div>
           ))}
         </div>
+        </div>
       </section>
 
       {/* IMKONIYATLAR */}
-      <section id="imkoniyatlar" className="bg-surface py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <section id="imkoniyatlar" className="relative overflow-hidden bg-surface py-20">
+        <LegalLinesBg />
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
           <SectionHeading
             eyebrow="Imkoniyatlar"
             title="Boshidan oxirigacha yoningizda"
@@ -180,7 +200,7 @@ export default function Home() {
           />
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((f) => (
-              <Card key={f.title} className="p-6 transition-shadow hover:shadow-md">
+              <Card key={f.title} className="p-6 transition-shadow hover:shadow-card-hover">
                 <div className="grid size-11 place-items-center rounded-xl bg-brand-50 text-brand-600">
                   <f.icon className="size-6" />
                 </div>
@@ -237,7 +257,7 @@ export default function Home() {
               </div>
 
               {/* Body — xususiyatlar + tugma */}
-              <div className="flex flex-1 flex-col bg-zinc-50 px-5 py-5">
+              <div className="flex flex-1 flex-col bg-navy-50 px-5 py-5">
                 <ul className="flex-1 space-y-2.5">
                   {p.features.map((feat) => (
                     <li key={feat} className="flex items-start gap-2 text-sm text-muted-foreground">

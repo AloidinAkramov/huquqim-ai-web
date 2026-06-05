@@ -12,7 +12,11 @@ const statusTone: Record<CaseStatus, "brand" | "neutral" | "success" | "warning"
 };
 
 export function CaseStatusBadge({ status }: { status: CaseStatus }) {
-  return <Badge tone={statusTone[status]}>{caseStatusLabels[status]}</Badge>;
+  return (
+    <Badge tone={statusTone[status]} dot>
+      {caseStatusLabels[status]}
+    </Badge>
+  );
 }
 
 export function CaseTypeBadge({ type }: { type: CaseType }) {

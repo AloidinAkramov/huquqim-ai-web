@@ -19,7 +19,7 @@ const plans = [
   {
     tier: 1,
     name: "Bir martalik",
-    price: "50 000",
+    price: "99 000",
     period: "so'm",
     icon: FileSignature,
     highlight: true,
@@ -28,7 +28,7 @@ const plans = [
   {
     tier: 2,
     name: "Obuna / oy",
-    price: "99 000",
+    price: "199 000",
     period: "so'm",
     icon: Star,
     highlight: false,

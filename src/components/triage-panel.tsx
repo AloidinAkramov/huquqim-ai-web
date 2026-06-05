@@ -7,15 +7,15 @@ import { AlertTriangle, Scale, Send } from "lucide-react";
 
 const TELEGRAM_USERNAME = "aloidin";
 
-// Toifa nomiga rang
+// Toifa nomiga rang (teal/green ishlatilmaydi — rasmiy palitra)
 const toneByName: Record<string, string> = {
   Jinoiy: "bg-red-500",
-  Fuqarolik: "bg-brand-500",
+  Fuqarolik: "bg-brand-600",
   "Ma'muriy": "bg-amber-500",
   Mamuriy: "bg-amber-500",
   Mehnat: "bg-violet-500",
-  "Iste'molchi": "bg-teal-500",
-  Istemolchi: "bg-teal-500",
+  "Iste'molchi": "bg-sky-600",
+  Istemolchi: "bg-sky-600",
 };
 
 export function TriagePanel({ triage, loading }: { triage: TriageResult | null; loading: boolean }) {
@@ -28,7 +28,7 @@ export function TriagePanel({ triage, loading }: { triage: TriageResult | null; 
         </div>
         <div className="mt-4 space-y-3">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="h-2.5 w-full animate-pulse rounded-full bg-zinc-100" />
+            <div key={i} className="h-2.5 w-full animate-pulse rounded-full bg-navy-100" />
           ))}
         </div>
       </Card>
@@ -56,7 +56,7 @@ export function TriagePanel({ triage, loading }: { triage: TriageResult | null; 
                 <span className="font-medium text-foreground">{c.name}</span>
                 <span className="tabular-nums text-muted-foreground">{c.percent}%</span>
               </div>
-              <div className="h-2.5 w-full overflow-hidden rounded-full bg-zinc-100">
+              <div className="h-2.5 w-full overflow-hidden rounded-full bg-navy-100">
                 <div
                   className={cn("h-full rounded-full transition-all", toneByName[c.name] ?? "bg-zinc-400")}
                   style={{ width: `${Math.min(100, Math.max(2, c.percent))}%` }}

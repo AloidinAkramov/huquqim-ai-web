@@ -5,9 +5,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { TemplateGridSkeleton } from "@/components/ui/skeleton";
 import { documentsApi, isPaymentRequired } from "@/lib/api";
 import { caseTypeLabels, CaseType, Template } from "@/lib/types";
-import { Download, FileText, Loader2, Search } from "lucide-react";
+import { Download, FileText, Search, Star } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 const groupOrder: CaseType[] = [
@@ -36,8 +37,24 @@ export default function DocumentsPage() {
   }, []);
 
   function openTemplate(t: Template) {
+    // Maydonsiz (tayyor namuna) shablon — darrov yuklab olamiz, modal ochmaymiz.
+    if (t.fields.length === 0) {
+      void downloadDirect(t);
+      return;
+    }
     setActive(t);
     setValues(Object.fromEntries(t.fields.map((f) => [f.key, ""])));
+  }
+
+  async function downloadDirect(t: Template) {
+    setDownloading(true);
+    try {
+      await documentsApi.fillAndDownload(t, {});
+    } catch (err) {
+      if (isPaymentRequired(err)) setPaywall(true);
+    } finally {
+      setDownloading(false);
+    }
   }
 
   async function download() {
@@ -64,15 +81,22 @@ export default function DocumentsPage() {
     );
   }, [templates, query]);
 
+  // Rasmiy FPK da'vo arizasi — alohida, eng tepada ajratib ko'rsatamiz.
+  const featured = useMemo(
+    () => filtered.find((t) => t.name.includes("rasmiy namuna")),
+    [filtered]
+  );
+
   const grouped = useMemo(() => {
     const map = new Map<CaseType, Template[]>();
     for (const t of filtered) {
+      if (featured && t.id === featured.id) continue; // ikki marta ko'rsatmaymiz
       const arr = map.get(t.caseType) ?? [];
       arr.push(t);
       map.set(t.caseType, arr);
     }
     return groupOrder.filter((c) => map.has(c)).map((c) => ({ type: c, items: map.get(c)! }));
-  }, [filtered]);
+  }, [filtered, featured]);
 
   const requiredFilled =
     active?.fields.filter((f) => f.required).every((f) => values[f.key]?.trim()) ?? false;
@@ -99,15 +123,45 @@ export default function DocumentsPage() {
       </div>
 
       {loading ? (
-        <div className="grid place-items-center py-16">
-          <Loader2 className="size-6 animate-spin text-brand-400" />
-        </div>
+        <TemplateGridSkeleton />
       ) : grouped.length === 0 ? (
         <p className="mt-12 text-center text-sm text-muted-foreground">
           &quot;{query}&quot; bo&apos;yicha shablon topilmadi.
         </p>
       ) : (
         <div className="mt-8 space-y-8">
+          {/* Tavsiya etilgan — rasmiy FPK da'vo arizasi */}
+          {featured && (
+            <section>
+              <div className="mb-3 flex items-center gap-2">
+                <Star className="size-4 fill-amber-400 text-amber-400" />
+                <h2 className="text-sm font-semibold uppercase tracking-wide text-brand-700">
+                  Tavsiya etiladi
+                </h2>
+              </div>
+              <button onClick={() => openTemplate(featured)} className="group w-full text-left">
+                <Card className="flex items-start gap-4 border-brand-300 bg-brand-50/40 p-5 ring-1 ring-brand-200 transition-all hover:shadow-card-hover">
+                  <div className="grid size-12 shrink-0 place-items-center rounded-xl bg-brand-600 text-white">
+                    <FileText className="size-6" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold text-foreground group-hover:text-brand-700">
+                      {featured.name}
+                    </h3>
+                    {featured.description && (
+                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                        {featured.description}
+                      </p>
+                    )}
+                    <span className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-brand-600">
+                      <Download className="size-4" /> To&apos;ldirish va Word yuklab olish
+                    </span>
+                  </div>
+                </Card>
+              </button>
+            </section>
+          )}
+
           {grouped.map((g) => (
             <section key={g.type}>
               <div className="mb-3 flex items-center gap-2">
@@ -123,8 +177,8 @@ export default function DocumentsPage() {
                     onClick={() => openTemplate(t)}
                     className="group text-left"
                   >
-                    <Card className="flex h-full gap-3 p-4 transition-all hover:border-brand-300 hover:shadow-md">
-                      <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600">
+                    <Card className="flex h-full gap-3 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-card-hover">
+                      <div className="grid size-10 shrink-0 place-items-center rounded-lg bg-brand-50 text-brand-600 transition-colors group-hover:bg-brand-600 group-hover:text-white">
                         <FileText className="size-5" />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -152,7 +206,7 @@ export default function DocumentsPage() {
       {/* To'ldirish modali */}
       {active && (
         <div
-          className="fixed inset-0 z-50 grid place-items-center bg-zinc-900/40 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 grid place-items-center bg-navy-900/40 p-4 backdrop-blur-sm"
           onClick={() => setActive(null)}
         >
           <Card

@@ -3,30 +3,55 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { authApi, IS_MOCK } from "@/lib/api";
-import { AlertCircle } from "lucide-react";
+import { authApi } from "@/lib/api";
+import { AlertCircle, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+// Demo hisob — bir bosishda kirish uchun (premium faol)
+const DEMO_EMAIL = "admin@huquqim.ai";
+const DEMO_PASSWORD = "admin123";
+
 export default function LoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState(DEMO_EMAIL);
+  const [password, setPassword] = useState(DEMO_PASSWORD);
   const [loading, setLoading] = useState(false);
+  const [demoLoading, setDemoLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
+  async function login(em: string, pw: string) {
     setError(null);
-    setLoading(true);
     try {
-      await authApi.login({ email, password });
+      await authApi.login({ email: em, password: pw });
       router.push("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Kirishda xatolik.");
+      throw err;
+    }
+  }
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await login(email, password);
+    } catch {
+      /* error ko'rsatildi */
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function demoLogin() {
+    setDemoLoading(true);
+    try {
+      await login(DEMO_EMAIL, DEMO_PASSWORD);
+    } catch {
+      /* error ko'rsatildi */
+    } finally {
+      setDemoLoading(false);
     }
   }
 
@@ -37,13 +62,23 @@ export default function LoginPage() {
         Davom etish uchun email va parolingizni kiriting.
       </p>
 
-      {IS_MOCK && (
-        <p className="mt-4 rounded-lg bg-brand-50 px-3 py-2 text-xs text-brand-700">
-          Demo rejim: istalgan email/parol bilan kiring.
-        </p>
-      )}
+      {/* Demo bilan bir bosishda kirish */}
+      <Button
+        type="button"
+        variant="primary"
+        className="mt-5 w-full"
+        loading={demoLoading}
+        onClick={demoLogin}
+      >
+        <Sparkles className="size-4" /> Demo bilan kirish (premium)
+      </Button>
+      <div className="my-5 flex items-center gap-3 text-xs text-muted">
+        <span className="h-px flex-1 bg-border" />
+        yoki o&apos;z hisobingiz bilan
+        <span className="h-px flex-1 bg-border" />
+      </div>
 
-      <form onSubmit={onSubmit} className="mt-6 space-y-4">
+      <form onSubmit={onSubmit} className="space-y-4">
         <Input
           id="email"
           type="email"

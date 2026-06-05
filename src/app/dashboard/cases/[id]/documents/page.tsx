@@ -175,7 +175,7 @@ export default function CaseDocumentsPage() {
       {/* Ko'rish modali */}
       {preview && (
         <Modal onClose={() => setPreview(null)} title={preview.title}>
-          <pre className="max-h-[60vh] overflow-y-auto whitespace-pre-wrap rounded-xl border border-border bg-zinc-50 p-4 font-sans text-sm leading-relaxed text-foreground">
+          <pre className="max-h-[60vh] overflow-y-auto whitespace-pre-wrap rounded-xl border border-border bg-navy-50 p-4 font-sans text-sm leading-relaxed text-foreground">
             {preview.content}
           </pre>
           <div className="mt-4 flex justify-end gap-2">
@@ -211,7 +211,7 @@ function Modal({
 }) {
   return (
     <div
-      className="fixed inset-0 z-50 grid place-items-center bg-zinc-900/40 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-50 grid place-items-center bg-navy-900/40 p-4 backdrop-blur-sm"
       onClick={onClose}
     >
       <Card

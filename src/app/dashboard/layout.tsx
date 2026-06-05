@@ -5,14 +5,14 @@ import { UpgradeModal } from "@/components/upgrade-modal";
 import { Disclaimer } from "@/components/ui/disclaimer";
 import { auth, authApi } from "@/lib/api";
 import { cn } from "@/lib/utils";
-import { Crown, Folder, LayoutDashboard, LogOut, Menu, Sparkles, X } from "lucide-react";
+import { Briefcase, Crown, FileText, LogOut, Menu, Sparkles, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const nav = [
-  { href: "/dashboard", label: "Ishlarim", icon: LayoutDashboard },
-  { href: "/dashboard/documents", label: "Hujjatlar", icon: Folder },
+  { href: "/dashboard", label: "Ishlarim", icon: Briefcase },
+  { href: "/dashboard/documents", label: "Hujjatlar", icon: FileText },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -50,7 +50,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-surface transition-transform md:static md:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 flex w-64 flex-col border-r border-border bg-surface transition-transform md:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -75,20 +75,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                  "group/nav flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-200",
                   active
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-muted-foreground hover:bg-zinc-50 hover:text-foreground"
+                    ? "bg-brand-600 text-white shadow-sm"
+                    : "text-muted-foreground hover:bg-brand-50 hover:text-brand-700 hover:translate-x-0.5"
                 )}
               >
-                <item.icon className="size-4.5" />
+                <item.icon className="size-4.5 transition-transform group-hover/nav:scale-110" />
                 {item.label}
               </Link>
             );
           })}
         </nav>
 
-        <div className="space-y-3 p-3">
+        <div className="mt-auto space-y-3 border-t border-border p-3">
           {premium ? (
             <div className="flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2.5 text-sm font-medium text-amber-900">
               <Crown className="size-4 text-amber-500" />
@@ -106,9 +106,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <Disclaimer />
           <button
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-danger"
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-red-50 hover:text-danger"
           >
-            <LogOut className="size-4.5" />
+            <LogOut className="size-4.5 shrink-0" />
             Chiqish
           </button>
         </div>
@@ -124,18 +124,18 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       />
 
       {open && (
-        <div className="fixed inset-0 z-40 bg-zinc-900/40 md:hidden" onClick={() => setOpen(false)} />
+        <div className="fixed inset-0 z-40 bg-navy-900/40 md:hidden" onClick={() => setOpen(false)} />
       )}
 
       {/* Main */}
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-16 items-center gap-3 border-b border-border bg-background/80 px-4 backdrop-blur md:hidden">
+      <div className="flex min-h-screen min-w-0 flex-1 flex-col md:pl-64">
+        <header className="sticky top-0 z-30 flex h-16 items-center gap-3 border-b border-border bg-background/90 px-4 backdrop-blur md:hidden">
           <button onClick={() => setOpen(true)}>
             <Menu className="size-5" />
           </button>
           <Logo />
         </header>
-        <main className="flex-1 overflow-y-auto">{children}</main>
+        <main className="flex-1">{children}</main>
       </div>
     </div>
   );

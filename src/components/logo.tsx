@@ -1,15 +1,37 @@
 import { cn } from "@/lib/utils";
-import { Scale } from "lucide-react";
+import Image from "next/image";
 
-export function Logo({ className, showText = true }: { className?: string; showText?: boolean }) {
+/**
+ * Brend logosi — metalik H + tarozi ikonkasi (public/logo-icon.png) + "Huquqim.AI" matni.
+ * theme="light" — oq matn (to'q fon ustida, hero), "dark" — qora matn (oq fon).
+ */
+export function Logo({
+  className,
+  showText = true,
+  theme = "dark",
+}: {
+  className?: string;
+  showText?: boolean;
+  theme?: "light" | "dark";
+}) {
   return (
     <span className={cn("inline-flex items-center gap-2", className)}>
-      <span className="grid size-8 place-items-center rounded-lg bg-brand-600 text-white shadow-sm shadow-brand-600/30">
-        <Scale className="size-5" strokeWidth={2.2} />
-      </span>
+      <Image
+        src="/logo-icon.png"
+        alt="Huquqim.AI"
+        width={36}
+        height={36}
+        className="size-9 shrink-0 object-contain"
+        priority
+      />
       {showText && (
-        <span className="text-lg font-bold tracking-tight text-foreground">
-          Huquqim<span className="text-brand-600">.AI</span>
+        <span
+          className={cn(
+            "text-lg font-bold tracking-tight",
+            theme === "light" ? "text-white" : "text-foreground"
+          )}
+        >
+          Huquqim<span className={theme === "light" ? "text-sky-300" : "text-brand-600"}>.AI</span>
         </span>
       )}
     </span>
