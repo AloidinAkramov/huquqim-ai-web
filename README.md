@@ -12,7 +12,9 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel&logoColor=white)](https://huquqim-ai.vercel.app)
 
-[🌐 Jonli demo](https://huquqim-ai.vercel.app) · [Backend repo](https://github.com/AloidinAkramov/huquqim-ai-backend)
+<br/>
+
+### [![Jonli demo](https://img.shields.io/badge/🌐_JONLI_DEMO-huquqim--ai.vercel.app-0F4FB3?style=for-the-badge)](https://huquqim-ai.vercel.app) &nbsp; [![Backend repo](https://img.shields.io/badge/⚙️_BACKEND_REPO-huquqim--ai--backend-14213D?style=for-the-badge&logo=github)](https://github.com/AloidinAkramov/huquqim-ai-backend)
 
 </div>
 
