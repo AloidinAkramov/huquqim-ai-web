@@ -4,15 +4,15 @@
 
 ### Advokati yo'q fuqarolar uchun sun'iy intellekt huquqiy yordamchisi
 
-O'zbekiston fuqarolariga kichik sud ishlarida yordam beruvchi AI-platformaning **frontend** qismi.
-Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
+*Premium LegalTech interfeys — davlat portali darajasidagi ishonchli, rasmiy, zamonaviy dizayn.*
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel&logoColor=white)](https://huquqim-ai.vercel.app)
 
-[Backend repo](https://github.com/AloidinAkramov/huquqim-ai-backend) · [🌐 Jonli demo](https://frontend-mu-lilac-so8jhtnqsj.vercel.app)
+[🌐 Jonli demo](https://huquqim-ai.vercel.app) · [Backend repo](https://github.com/AloidinAkramov/huquqim-ai-backend)
 
 </div>
 
@@ -20,31 +20,61 @@ Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
 
 ## 📋 Loyiha haqida
 
-**Huquqim.AI** — advokat yollay olmaydigan oddiy fuqarolar uchun huquqiy AI-yordamchi. Ushbu repo platformaning **veb interfeysi** — foydalanuvchi muammosini yozadi, AI bilan suhbatlashadi, hujjat tayyorlaydi.
+Advokat yollay olmaydigan oddiy fuqarolar uchun huquqiy AI-yordamchining **veb interfeysi**. Foydalanuvchi muammosini erkin tilda yozadi, AI bilan suhbatlashadi, hujjat tayyorlaydi va sudga tayyorlanadi.
 
-> ⚠️ Bu xizmat advokat yoki yuristni **almashtirmaydi** — faqat huquqiy ma'lumot va yordam beruvchi vositadir.
-
----
-
-## ✨ Asosiy sahifalar
-
-| Sahifa | Tavsif |
-|--------|--------|
-| 🏠 **Landing** | Hero, imkoniyatlar, narxlar, disklaymer |
-| 🔐 **Auth** | Ro'yxatdan o'tish / kirish |
-| 📊 **Dashboard** | Ishlar ro'yxati, yangi ish ochish |
-| 💬 **Chat** | AI suhbat — toifa foizlari, RAG manbalari, advokat tavsiyasi |
-| 📄 **Hujjatlar** | 51+ shablon — to'ldirish va `.docx` yuklab olish |
+> ⚠️ Bu xizmat advokat yoki yuristni **almashtirmaydi** — faqat huquqiy ma'lumot beruvchi vosita.
 
 ---
 
-## 🎨 Asosiy funksiyalar
+## 🧭 Foydalanuvchi yo'li
 
-- ✅ **AI chat interfeysi** — markdown, "yozmoqda" animatsiyasi, RAG manbalar
-- ✅ **Triage paneli** — muammo toifalari foiz barlar bilan
-- ✅ **Advokat tavsiyasi** — jiddiy ishda Telegram tugmasi
-- ✅ **Hujjat yuklab olish** — shablon to'ldirib `.docx` (Word) olish
-- ✅ **Premium / paywall** — bepul daraja cheklovi, upgrade oqimi
+```
+   Ro'yxatdan o'tish              Yangi ish ochish
+   (ommaviy ofertaga rozilik) →  (muammoni erkin tilda yozish)
+            │                              │
+            ▼                              ▼
+   ┌──────────────────┐         ┌────────────────────────────┐
+   │  AI CHAT         │         │  TRIAGE PANELI             │
+   │  • huquq izohi   │  ◀───▶  │  Jinoiy 85% ▓▓▓▓▓▓▓▓░░     │
+   │  • RAG manbalari │         │  Ma'muriy 10% ▓░░░░░░░░    │
+   │  • markdown      │         │  → jiddiy ish: advokatga   │
+   └──────────────────┘         └────────────────────────────┘
+            │
+            ▼
+   ┌──────────────────────────────────────────┐
+   │  HUJJATLAR                                │
+   │  50+ shablon → to'ldirish → .docx yuklash │
+   │  (rasmiy FPK da'vo arizasi tayyor namuna) │
+   └──────────────────────────────────────────┘
+```
+
+---
+
+## ✨ Asosiy sahifalar va funksiyalar
+
+| Sahifa | Tafsilot |
+|--------|----------|
+| 🏠 **Landing** | Premium ko'k hero (fon rasm + glass), scroll animatsiya, narxlar, oferta |
+| 🔐 **Auth** | Kirish/ro'yxatdan o'tish — ko'k premium fon, **ofertaga majburiy rozilik** |
+| 📊 **Dashboard** | Ishlar ro'yxati (skeleton loading, hover animatsiya) |
+| 💬 **Chat** | AI suhbat — triage foiz barlari, **RAG manbalari**, advokat tavsiyasi |
+| 📄 **Hujjatlar** | 50+ shablon — to'ldirib `.docx` yuklash; rasmiy FPK namunasi darrov tayyor |
+| 📜 **Oferta / Disclaimer** | Ommaviy oferta + mas'uliyat cheklovi (rasmiy sahifalar) |
+
+---
+
+## 🎨 Dizayn tizimi
+
+Davlat portali (MySud.uz / Lex.uz) uslubidagi premium LegalTech ko'rinish:
+
+| Element | Qiymat |
+|---------|--------|
+| **Primary** | `#0F4FB3` (rasmiy davlat ko'ki) |
+| **Background** | `#F7F9FC` · **Surface** `#FFFFFF` |
+| **Text** | `#14213D` (navy) · `#667085` |
+| **Tipografiya** | Inter (matn) · Manrope (sarlavha) |
+
+**Premium detallar:** ko'k glassmorphism hero, metalik tarozi logo, soft shadow kartalar (18px radius), scroll reveal (stagger fade-up), iOS-uslub glossy tugmalar, floating "Yangi ish" tugmasi, elegant huquqiy chiziqlar. *Neon/teal/dekor yo'q — jiddiy va rasmiy.*
 
 ---
 
@@ -58,16 +88,12 @@ Toza, ishonchli, mobil-birinchi interfeys — Lex.uz uslubidagi dizaynda.
 | **Ikonkalar** | Lucide React |
 | **Deploy** | Vercel |
 
----
-
-## 🎨 Dizayn
-
-Lex.uz (O'zbekiston qonunchilik portali) uslubida — **rasmiy davlat ko'ki** (`#0064A9`), toza oq fon, professional tipografiya. Fuqaro uchun tanish va ishonchli.
+> Backend ulanmagan bo'lsa **mock rejim** ishlaydi — demo ma'lumot bilan.
 
 ---
 
 <div align="center">
 
-**Huquqim.AI** · O'zbekiston fuqarolari uchun · 2026
+**Huquqim.AI** · O'zbekiston fuqarolari uchun huquqiy adolat · 2026
 
 </div>
