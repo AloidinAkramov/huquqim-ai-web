@@ -18,6 +18,8 @@
 
 ### [![Backend repo](https://img.shields.io/badge/⚙️_BACKEND_REPO-huquqim--ai--backend-14213D?style=for-the-badge&logo=github)](https://github.com/AloidinAkramov/huquqim-ai-backend)
 
+### [![Loyiha taqdimoti](https://img.shields.io/badge/📑_LOYIHA_TAQDIMOTI-Huquqim__AI.pdf-EAB54A?style=for-the-badge&logoColor=white)](Huquqim_AI.pdf)
+
 </div>
 
 ---
